@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link type="text/css" rel="stylesheet" href="draganddrop.css" />
+  <title>Drag and Drop</title>
+  <script>
+  function allowDrop(ev){
+    ev.preventDefault();
+  }
+
+  function drag(ev) {
+    ev.dataTransfer.setData("Text", ev.target.id);
+  }
+
+    function drop(ev) {
+      ev.preventDefault();
+      var data = ev.dataTransfer.getData("Text");
+      ev.target.appendChild(document.getElementById(data));
+    }
+  </script>
+  
+</head>
+<body>
+  <div id="target" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+  <img id="dragMe" src="kitten.jpg" draggable="true" anddragstart="drag(event)">
+  
+</body>
+</html>
+
+
+<!--my problem is that the cat is not dropping into the container code looks perfect must look for irregularities-->
+
+
+<!--1. How to use drag and drop
+I've actually prewritten the code to explain drag and drop. There's quite a bit of it and I wanted to make sure it was understandable. To start, I created a div that would be our target; that was where the user will drop the actual object. So on the div I id'd it as target and I associated with the target an ondrop event, which calls a drop function and passes the event, and an ondragover event, which calls allowDrop and passes it the event. On the image, which we sourced as kitten.jpg, we put a width of 300, a height of 200, and most importantly, we set the draggable attribute to true. ondragstart we called the drag function from above. So we have our three callback functions here in the script that I'll go over in a minute. On the target, I set a width of 350, a height of 250, and a 1px solid black border around the actual target. Put a little space in the bottom margin of 20px to separate the target from the object. We'll just Preview it real quick here in the actual IDE. There's our target and there's our object that will drop.
+
+[The listeners.html file is open in the Komodo Edit window. The file contains two sections, head and body. The head section contains a title tag, a style tag, and a script tag. The following code is enclosed within the opening and closing style tags: #target { width: 350px height: 250px; border: 1px solid black; margin-bottom: 20px; } The following code is enclosed within the opening and closing script tags: function allowDrop(ev) { ev.preventDefault(); } function drag(ev) { ev.dataTransfer.setData("Text", ev.target.id); } function drop(ev) { ev.preventDefault(); var data = ev.dataTransfer.getData("Text"); ev.target.appendChild(document.getElementById(data)); } The body section contains the following code: <div id="target" ondrop="drop(event)" ondragover="allowDrop(event)" ></div> <img id="dragMe" src="kitten.jpg" width="300px" height="200px" draggable="true" ondragstart="drag(event)"> The presenter previews the file in a test browser and an empty section and the image of a kitten are shown.]
+
+So following the life cycle of this, the user will start to drag the image and the ondragstart event fires calling drag and passing it the event. So the drag function will fire first. And on the event's dataTransfer object, it's going to set the data to this key value pair: Text and ev.target.id. So what that means is the target is going to be the image and the id is going to be dragMe. So we're essentially, when we start dragging, on the event, setting the dataTransfer object, its key value paired to Text and dragMe. So the user's dragging the actual object and then when they go over the target and release, we have a couple of other callback function. When we drag it over, we call allowDrop and pass it the event. And all allowDrop does is prevent the default behavior of the event in the browser. But then when we drop, when the user actually releases the mouse button, we run preventDefault again on the event and then we get from the event the dataTransfer object, which is going to be getData and Text – remember, Text is the name of the key value pair. So data will now include the id "dragMe", and then we'll use this when we say ev.target.appendChild(document ElementById, and this will be dragMe. So we'll essentially append to this div this image object, and in the end, the image will end up inside the div instead of outside of it. So let's demo this in an actual browser. Go ahead and bring up Firefox here,
+
+[The presenter previews the file in Mozilla Firefox.]
+
+and I drag, I release, and now the image is inside the actual target. Let me do this again, and what I'm going to do is I'm going to pull up here our Firefox console from Firebug and we're going to take a look at how the information is stored inside the dom of the browser. And notice here at this point, before we've done anything, the div element ends and then the image element begins. Now I'm going to drag the kitty into the target, make a little more space here, and now you'll notice that the image is inside the div. Right, the div starts here, ends here, and the image is inside it. So the way that happened is this line right here. We appended the child, so essentially making the image a child of the div or the logical division. This is a very common pattern that you see underneath all drag-and-drop interactions in HTML5.
+
+[The web page shows an empty section and the image of a kitten. The presenter drags the image and drops it inside the empty section. This places the image inside the section. The presenter refreshes the web page and opens the Mozilla Firefox console. This divides the browser into two parts, design view and console view. In the console view, the presenter points to the code in the body section. Then, in the design view, he drags the image and drops it inside the empty section. This moves the code of the image to the div tag in the console view.]
+
+-->
