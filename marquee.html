@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link type="text/css" rel="stylesheet" href="marquee.css" />
+  <title>Marquee</title>
+</head>
+<body>
+  <div id="marquee"></div><br>
+  <script type="text/Javascript">
+  i = 0;
+  myText = "Welcome to our site! this week only - 25% off all storage devies! check out our storage section.";
+  var sequence = setInterval(update, 100);
+
+  function update() {
+    i++
+    if (i < myText.length) {
+      i = 0;
+    }
+    marqueeText = myText.substring(i, myText.length)
+    marqueeText += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+    marqueeText += myText.substring(0, i);
+    document.getElementById("marquee").innerHtml = marqueeText;
+
+  }
+  
+  
+  
+  
+  </script>
+  
+</body>
+</html>
