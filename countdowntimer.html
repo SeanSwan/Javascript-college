@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Countdown Timer</title>
+  <script>
+  function doIt() {
+    setInterval(function countdown() {
+  now = new Date();
+  then = Date.parse(document.getElementById("date").value);
+  daysLeft = then - now;
+  days = Math.floor(daysLeft / (1000 * 60 * 60 * 24));
+  hours = Math.floor(daysLeft / (1000 * 60 * 60));
+  min = Math.floor(daysLeft / (1000 * 60));
+  secs = Math.floor(daysLeft / 1000);
+  dd = days;
+  hh = hours - days * 24;
+  mm = mins - hours * 60;
+  ss = secs - mins * 60;
+  document.getElementById("Countdown").innerHTML = dd + ' days ' + hh + ' hours ' + mm + ' minutes ' + ss + ' seconds ';
+      },100);
+
+    }
+ 
+  
+  
+  </script>
+</head>
+<body>
+  Enter a date in the format "December 24 2019"<br>(optionally add time, e.g., "17:00:00")
+  <br><br>
+  <input type="text" id="date" size="50" /><br><br>
+  <button onclick="doIt()">GO</button><br><br>
+  <div style="text-align: center; vertical-align: middle; width: 400px; height: 50px; border: 2px solid; line-height: 24px; font-family: Arial;">
+  Countdown:<br></div>
+</body>
+</html>
+
+
+<!--CODE LOOKS PERFECT BUT NOT WORKING-->
+
+<!--1. How to create a countdown timer
+In this video, I'll demonstrate how you can create a countdown timer using JavaScript. Okay, so I've already set up a web page that has a little form field here. We can enter a date in this format and optionally we can enter a time as well. When we click GO, we're going to run a function and that function will be called "doIt()" and it'll show our "Countdown" time. I've already actually started the function. So let's go ahead and create our Date() object, so now = new Date(); remember, make sure to use the opening and closing parentheses. Now what that'll do is set the present date and time and then = and this will be the time that we've entered up here, so then = Date.parse. What we want to do here is just get the document.getElementById, the "date" field where we entered the date, .value, okay. So we want to grab that information. And then we're going to create a variable called daysLeft = then - now; so it's actually a mathematical function that we create here saying take the date that we want to countdown to and subtract the current date from it and it'll actually work. JavaScript will do the math for us. So we need to now break it up and say, days =,
+
+[The index.html file is open in the Microsoft WebMatrix window and the corresponding web page is open in Internet Explorer. The file contains two sections, head and body. The head section contains a meta tag, a title tag, and a script tag. The script tag contains the doIT() function, which is empty. The body section contains the following code: Enter a date in the format "December 24, 2014"<br>(optionally add time, e.g., "17:00:00") <br><br> <input type="text" id="date" size="50" /><br><br> <button onclick="doIt()">GO</button><br><br> <div style="text-align: center; vertical-align: middle; width: 400px; height: 50px; border: 2px solid; line-height: 24pxfont-family: Arial;"> Countdown:<br> <div id="Countdown"></div> </div> The web page shows the label "Enter a date in the format "December 24, 2014"" followed by a line break and another label "(optionally add time, e.g., "17:00:00")". The labels are followed by a text field, the GO button, and the Countdown section. The presenter types the following code in the doIt() function: now = new Date(); then = Date.parse(document.getElementById("date").value); daysLeft = then - now;]
+
+and here is where we need to use Math.floor function because what we need to do is take the information the JavaScript, the browser, uses and put it into a meaningful format that we can read. And so in this case, it's daysLeft / and then this function, so a (1000*60*60*24). Okay, we're talking about hours now and hours of course are 24 hours a day, okay. That's going to calculate the number of days for us. And we use 1000 because everything is in milliseconds. So we need to be able to set that up so that the math is done properly, hours = Math.floor(daysLeft / (1000*60*60)), remember 60 for minutes, seconds, and hours, mins = Math.floor(daysLeft / and now we're breaking it down even more, so (1000*60). Okay, this will be our minutes. And then secs = Math.floor(daysLeft / 1000); and actually I don't even need to have the parentheses there, that will work.
+
+[The presenter continues to type code in the DoIt() function as follows: days = Math.floor(daysLeft / (1000*60*60*24)); hours = Math.floor(daysLeft / (1000*60*60)); mins = Math.floor(daysLeft / (1000*60)); secs = Math.floor(daysLeft / 1000);]
+
+Okay, so then I'm going to set up some variables for date, days, dd = days; hh = hours - days * 24; this is where we're actually doing the math to create the countdown between now and then. mn = mins – hours * 60; trust me this math will work, ss = secs - mins * 60; so you probably see what we're doing here is we're actually doing this subtraction, hours, days, mins to hours, secs to mins where we can finally do this document.getElementById and then we use our "Countdown" container, which is right here, capital C for "Countdown". I need to make sure we use a capital C, .innerHTML = dd + ' days ' + hh + ' hours ' + mm + ' minutes ' + and then finally, we'll do ss + ' seconds '.
+
+[The presenter continues to type code in the doIt() function as follows: dd = days; hh = hours - days * 24; mm = mins - hours * 60; ss = secs - mins * 60; document.getElementById("Countdown").innerHTML = dd + ' days ' + hh + ' hours ' + mm + ' minutes ' + ss + ' seconds ';]
+
+And once we've got that all set up, then we need to make our braces, make sure our braces are closed properly. We need a closing brace there and then a comma and then 1000. The reason we use 1000, so that looks good, the reason we use 1000 is because remember we're doing a setInterval up here. Actually that's the one thing that I forgot to do. Make sure that we use setInterval, setInterval will actually allow us to...it's one thing I forgot to do. Okay, so we're actually going to use setInterval(function (countdown(). Alright, and that looks pretty good. Okay, so setInterval is going to update the clock for us. It's actually going to show us a countdown rather than showing us a static date from the moment that we actually click the GO button. So down here is the timing for that interval and in this case, a 1000 milliseconds. And I'll go ahead and Save that now and Refresh. And let's pick a date. Christmas sounds pretty good, go ahead and Copy that, Paste it in here. Actually make that December 25, 2014 and GO,
+
+[The presenter adds a closing squiggly bracket and types the code ",1000);". Then, above the code for creating a date object, he types the code "setInterval(function countdown() {". This encloses the entire code of the doIt() function within the setInterval function. The presenter saves the index.html file and refreshes the web page to view the output. He copies the date "December 24, 2014" from the label and pastes it in the text field. Then he changes "December 24" to "December 25" in the text field. He clicks the Go button.]
+
+and there is our "Countdown", okay. Now you can speed it up and just to sort of better understand setInterval, if I make that 100 milliseconds, Save that and Refresh and Paste and GO, okay, that "Countdown" is going to happen a little quicker, but it's not really necessary because the 1000 is seconds anyways, okay. So we don't actually need to do that, 1000 would be fine, 100 is not going to speed up the actual "Countdown" because we're still seeing the actual "seconds" that are being counted.
+
+[The Countdown section displays the following information "231 days 12 hours 2 minutes 55 seconds". The value of seconds in the section is decreasing to show that the countdown has begun. To speed up the countdown, the presenter changes the value "1000" to "100" at the end of the code for the setInterval function. Then he saves the file, refreshes the web page, and views the changes in the speed of the countdown. Since there is no change as such in the speed of the countdown, so the presenter changes the value back to "1000" in the code.]-->
